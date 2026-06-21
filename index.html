@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chalieta's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pink: {
+                            400: '#F472B6',
+                            500: '#EC4899',
+                            600: '#DB2777',
+                        },
+                        dark: {
+                            bg: '#0f0f0f',       // Hitam paling gelap
+                            card: '#111111',     // Abu sangat gelap untuk kartu
+                            section: '#161616',  // Abu sangat gelap untuk selingan
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        bebas: ['Bebas Neue', 'sans-serif'], 
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f0f0f; 
+            color: #ffffff;
+        }
+        /* Efek halus untuk navigasi */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #F472B6;
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        /* Styling untuk list di personal skills */
+        .skills-list li {
+            position: relative;
+            padding-left: 1.5rem; 
+            margin-bottom: 0.5rem;
+        }
+        .skills-list li::before {
+            content: '•'; 
+            position: absolute;
+            left: 0;
+            color: #F472B6; 
+            font-size: 1.5rem; 
+            line-height: 1;
+            top: -0.2rem; 
+        }
+        /* CSS untuk menyembunyikan scrollbar pada slider project utama */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pink-500/30 selection:text-white">
+
+    <nav class="fixed w-full z-50 bg-dark-bg/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 md:px-12 py-6 flex justify-between items-center relative">
+            <a href="#home" class="text-2xl font-bold tracking-wider hover:text-pink-400 transition duration-300">
+                Chalieta<span class="text-pink-500">.</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
+                <a href="#home" class="nav-link hover:text-pink-400 transition">Home</a>
+                <a href="#education" class="nav-link hover:text-pink-400 transition">Education</a>
+                <a href="#skills" class="nav-link hover:text-pink-400 transition">Skills</a>
+                <a href="#projects" class="nav-link hover:text-pink-400 transition">Projects</a>
+                <a href="#contact" class="nav-link hover:text-pink-400 transition">Contact</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-pink-400 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-dark-bg border-b border-white/10 flex flex-col items-center py-6 space-y-6 text-sm font-semibold tracking-wide shadow-lg">
+            <a href="#home" class="hover:text-pink-400 transition mobile-link">Home</a>
+            <a href="#education" class="hover:text-pink-400 transition mobile-link">Education</a>
+            <a href="#skills" class="hover:text-pink-400 transition mobile-link">Skills</a>
+            <a href="#projects" class="hover:text-pink-400 transition mobile-link">Projects</a>
+            <a href="#contact" class="hover:text-pink-400 transition mobile-link">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center pt-40 pb-20 md:pt-20 md:pb-0 px-6 md:px-12 max-w-6xl mx-auto">
+        <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12 w-full">
+            <div class="w-full md:w-1/2">
+                <p class="text-gray-400 text-xs md:text-sm font-bold tracking-widest uppercase mb-4">
+                    Information Systems Student
+                </p>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                    Hi, I'm <br>
+                    <span class="text-pink-400">Chalieta.</span>
+                </h1>
+                <p class="text-gray-400 leading-relaxed text-sm md:text-base text-justify mb-8 pr-0 md:pr-4">
+                    Fifth-semester Information Systems student at Universitas Pembangunan Nasional Veteran Jakarta with a strong interest in Web Development. Possess fundamental knowledge of HTML, CSS, JavaScript, and database management gained through academic projects. Strong analytical and problem-solving skills with the ability to learn new technologies quickly. Eager to contribute, grow professionally, and develop innovative web-based solutions.
+                </p>
+                <a href="#projects" class="inline-block bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-8 rounded-xl transition duration-300 shadow-[0_0_20px_rgba(236,72,153,0.4)]">
+                    View My Projects
+                </a>
+            </div>
+
+            <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+                <div class="relative w-full md:w-[85%] rounded-3xl overflow-hidden">
+                    <img 
+                        src="foto-profil.png" 
+                        alt="Chalieta's Photo" 
+                        class="w-full h-auto md:h-[550px] object-cover"
+                        onerror="this.src='https://placehold.co/600x800/1E1E1E/F472B6?text=Foto+Profil+Kamu'"
+                    >
+                    <div class="absolute bottom-0 w-full h-4 bg-pink-400"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-32 bg-[#0f0f0f]">
+        <div class="max-w-5xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-16">
+                <div class="w-full md:w-3/5 space-y-8">
+                    <h2 class="text-5xl md:text-7xl font-extrabold">
+                        Education<span class="text-pink-500">.</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-pink-400 font-bold text-xl tracking-wider">2024 - Now</p>
+                        <h3 class="text-3xl md:text-4xl font-bold text-white leading-tight">
+                            Universitas Pembangunan Nasional Veteran Jakarta
+                        </h3>
+                        <p class="text-gray-300 text-2xl font-medium">
+                            Undergraduate D3<br>Information Systems
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/5 flex justify-center md:justify-end">
+                    <img src="logo kampus fix.png" alt="Logo UPN Veteran Jakarta" onerror="this.src='https://placehold.co/300x300/1E1E1E/F472B6?text=Logo+Kampus'" class="w-64 h-auto drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-32 bg-dark-bg">
+        <div class="max-w-5xl mx-auto px-6 md:px-12">
+            <div class="mb-16">
+                <h2 class="text-5xl md:text-7xl font-extrabold">
+                    Personal Skills<span class="text-pink-500">.</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-white">Technical Skills</h3>
+                    <ul class="skills-list text-gray-300 text-sm md:text-base leading-relaxed">
+                        <li>Web Development (HTML, CSS, JavaScript)</li>
+                        <li>Mobile Application Development (React Native)</li>
+                        <li>Database Management (MySQL, Firebase)</li>
+                        <li>API Integration</li>
+                        <li>System Analysis</li>
+                        <li>Git & GitHub</li>
+                        <li>Responsive Web Design</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-white">Professional Skills</h3>
+                    <ul class="skills-list text-gray-300 text-sm md:text-base leading-relaxed">
+                        <li>Problem Solving</li>
+                        <li>Communication</li>
+                        <li>Teamwork & Collaboration</li>
+                        <li>Time Management</li>
+                        <li>Adaptability</li>
+                        <li>Attention to Detail</li>
+                        <li>Critical Thinking</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-white">Software & Tools</h3>
+                    <ul class="skills-list text-gray-300 text-sm md:text-base leading-relaxed">
+                        <li>Visual Studio Code</li>
+                        <li>Android Studio</li>
+                        <li>Firebase Console</li>
+                        <li>GitHub</li>
+                        <li>MySQL Workbench</li>
+                        <li>Figma</li>
+                        <li>Apache NetBeans</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-32 pl-6 md:pl-12 bg-dark-section">
+        <div class="max-w-6xl mx-auto pr-6 md:pr-12 text-left mb-16">
+            <h2 class="text-5xl md:text-7xl font-extrabold mb-6">
+                My <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-600">Projects</span>
+            </h2>
+            <p class="text-gray-400">Swipe or scroll horizontally to see my project.</p>
+        </div>
+
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-10 pr-6 md:pr-12 no-scrollbar">
+            
+            <div class="snap-center shrink-0 w-[85vw] md:w-[450px] bg-dark-card rounded-2xl p-6 border border-white/5 hover:border-pink-500/30 transition duration-300 group">
+                
+                <div class="h-64 bg-black rounded-xl mb-6 overflow-hidden relative group/slider">
+                    <div class="flex transition-transform duration-500 ease-in-out h-full slider-track w-full">
+                        <img src="project-1.png" alt="Food Recipe 1" class="w-full h-full object-cover shrink-0">
+                        <img src="project-2.png" alt="Food Recipe 2" class="w-full h-full object-cover shrink-0">
+                        <img src="project-3.png" alt="Food Recipe 3" class="w-full h-full object-cover shrink-0">
+                        <img src="project-4.png" alt="Food Recipe 4" class="w-full h-full object-cover shrink-0">
+                        <img src="project-5.png" alt="Food Recipe 5" class="w-full h-full object-cover shrink-0">
+                        <img src="project-6.png" alt="Food Recipe 6" class="w-full h-full object-cover shrink-0">
+                    </div>
+                    <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 prev-btn">❮</button>
+                    <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 next-btn">❯</button>
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 dots-container z-10">
+                        <div class="w-2 h-2 rounded-full bg-pink-500 transition-colors"></div>
+                        <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+                        <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+                        <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+                        <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+                        <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+                    </div>
+                </div>
+
+                <div class="w-12 h-1 bg-pink-500/50 mb-6 rounded-full"></div>
+                <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition">Food Recipe Web App</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">A web application designed to showcase traditional Indonesian food recipes. Features include dynamic filtering (by category and difficulty), pagination, an accordion interface for recipe steps, and an interactive form to add new recipes.</p>
+            </div>
+
+            <!-- PROJECT 2: SISTEM INFORMASI AKADEMIK (DENGAN SLIDER 7-14) -->
+<div class="snap-center shrink-0 w-[85vw] md:w-[450px] bg-dark-card rounded-2xl p-6 border border-white/5 hover:border-pink-500/30 transition duration-300 group">
+    
+    <div class="h-64 bg-black rounded-xl mb-6 overflow-hidden relative group/slider">
+        <!-- Slider Track -->
+        <div class="flex transition-transform duration-500 ease-in-out h-full slider-track w-full">
+            <img src="project-7.png" alt="SIA 1" class="w-full h-full object-cover shrink-0">
+            <img src="project-8.png" alt="SIA 2" class="w-full h-full object-cover shrink-0">
+            <img src="project-9.png" alt="SIA 3" class="w-full h-full object-cover shrink-0">
+            <img src="project-10.png" alt="SIA 4" class="w-full h-full object-cover shrink-0">
+            <img src="project-11.png" alt="SIA 5" class="w-full h-full object-cover shrink-0">
+            <img src="project-12.png" alt="SIA 6" class="w-full h-full object-cover shrink-0">
+            <img src="project-13.png" alt="SIA 7" class="w-full h-full object-cover shrink-0">
+            <img src="project-14.png" alt="SIA 8" class="w-full h-full object-cover shrink-0">
+        </div>
+        
+        <!-- Tombol Navigasi -->
+        <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 prev-btn">❮</button>
+        <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 next-btn">❯</button>
+        
+        <!-- Indikator Titik -->
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 dots-container z-10">
+            <div class="w-2 h-2 rounded-full bg-pink-500 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+        </div>
+    </div>
+
+    <!-- Konten Teks -->
+    <div class="w-12 h-1 bg-pink-500/50 mb-6 rounded-full"></div>
+    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition">Web-Based Music Studio Reservation Management System</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+        A web-based platform (Harmony Studio) designed to streamline music studio reservations. It features dedicated portals for both Users and Admins. Users can browse available rooms, submit booking requests, manage their dashboard, and complete payments. The Admin portal allows for efficient room management, reservation tracking, and revenue monitoring.
+    </p>
+</div>
+
+    <div class="snap-center shrink-0 w-[85vw] md:w-[450px] bg-dark-card rounded-2xl p-6 border border-white/5 hover:border-pink-500/30 transition duration-300 group">
+    <div class="h-64 bg-black rounded-xl mb-6 overflow-hidden relative group/slider">
+        <div class="flex transition-transform duration-500 ease-in-out h-full slider-track w-full">
+            <img src="v1.png" alt="UI/UX Redesign 1" class="w-full h-full object-contain bg-black shrink-0">
+            <img src="v2.png" alt="UI/UX Redesign 2" class="w-full h-full object-contain bg-black shrink-0">
+            <img src="v3.png" alt="UI/UX Redesign 3" class="w-full h-full object-contain bg-black shrink-0">
+            <img src="v4.png" alt="UI/UX Redesign 4" class="w-full h-full object-contain bg-black shrink-0">
+        </div>
+        
+        <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 prev-btn">❮</button>
+        <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 next-btn">❯</button>
+        
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 dots-container z-10">
+            <div class="w-2 h-2 rounded-full bg-pink-500 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+        </div>
+    </div>
+
+    <div class="w-12 h-1 bg-pink-500/50 mb-6 rounded-full"></div>
+    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition">VibeTune Music App</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+        A mobile application for streaming and playing music. It features a modern dark-mode user interface, a dynamic "now playing" banner, interactive play controls, and intuitive bottom navigation for exploring songs.
+    </p>
+</div>
+
+<div class="snap-center shrink-0 w-[85vw] md:w-[450px] bg-dark-card rounded-2xl p-6 border border-white/5 hover:border-pink-500/30 transition duration-300 group">
+    <div class="h-64 bg-black rounded-xl mb-6 overflow-hidden relative group/slider shrink-0">
+        <iframe 
+            class="w-full h-full" 
+            src="https://www.youtube.com/embed/AnW9-AbCf9g" 
+            title="Firebase Auth App Demo" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="w-12 h-1 bg-pink-500/50 mb-6 rounded-full"></div>
+    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition">BookShelf – Digital Book Catalog & Library Explorer</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+        Is a mobile digital book catalog application powered by the Open Library API, designed to help users discover, search, and save their favorite books. The application features book search functionality by title or author, detailed book information, trending book recommendations, and a favorites system for managing personal reading collections. Built with a modern and user-friendly interface, BookShelf provides an engaging and seamless experience for exploring digital book resources and enhancing reading accessibility.
+    </p>
+</div>
+
+    <div class="snap-center shrink-0 w-[85vw] md:w-[450px] bg-dark-card rounded-2xl p-6 border border-white/5 hover:border-pink-500/30 transition duration-300 group">
+    <div class="h-64 bg-black rounded-xl mb-6 overflow-hidden relative group/slider">
+        <div class="flex transition-transform duration-500 ease-in-out h-full slider-track w-full">
+            <img src="eco1.png" alt="E-Commerce 1" class="w-full h-full object-contain shrink-0">
+            <img src="eco2.png" alt="E-Commerce 2" class="w-full h-full object-contain shrink-0">
+            <img src="eco3.png" alt="E-Commerce 3" class="w-full h-full object-contain shrink-0">
+            <img src="eco4.png" alt="E-Commerce 4" class="w-full h-full object-contain shrink-0">
+            <img src="eco5.png" alt="E-Commerce 5" class="w-full h-full object-contain shrink-0">
+            <img src="eco6.png" alt="E-Commerce 6" class="w-full h-full object-contain shrink-0">
+            <img src="eco7.png" alt="E-Commerce 7" class="w-full h-full object-contain shrink-0">
+            <img src="eco8.png" alt="E-Commerce 8" class="w-full h-full object-contain shrink-0">
+            <img src="eco9.png" alt="E-Commerce 9" class="w-full h-full object-contain shrink-0">
+        </div>
+        
+        <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 prev-btn">❮</button>
+        <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 next-btn">❯</button>
+        
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 dots-container z-10">
+            <div class="w-2 h-2 rounded-full bg-pink-500 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+        </div>
+    </div>
+
+    <div class="w-12 h-1 bg-pink-500/50 mb-6 rounded-full"></div>
+    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition">EcoSort – Smart Waste Sorting & Recycling Management Mobile App</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+        EcoSort is a UI/UX mobile application design that helps users sort waste correctly into categories such as paper, plastic, glass, metal, and organic waste. The application provides waste-sorting guidelines, a daily recycling activity tracker with a streak-based reward system, information about nearby waste banks, and a user profile feature to monitor individual environmental contributions. EcoSort is designed to promote environmental awareness, encourage responsible waste management practices, and support a more sustainable lifestyle.
+    </p>
+</div>
+
+<div class="snap-center shrink-0 w-[85vw] md:w-[450px] bg-dark-card rounded-2xl p-6 border border-white/5 hover:border-pink-500/30 transition duration-300 group">
+    <div class="h-64 bg-black rounded-xl mb-6 overflow-hidden relative group/slider shrink-0">
+        <iframe 
+            class="w-full h-full" 
+            src="https://www.youtube.com/embed/z_6n6Xo-1Jo" 
+            title="BookShelf Demo" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="w-12 h-1 bg-pink-500/50 mb-6 rounded-full"></div>
+    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition">Auth Practicum – Secure Authentication & Authorization Mobile App</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+        Is a mobile authentication application built with React Native (Expo) and Firebase. The app implements secure user authentication and authorization features, including user registration, login, email verification, password reset, biometric authentication, protected routes, and role-based access control. It demonstrates modern mobile security practices and user access management in a real-world application environment.
+    </p>
+</div>
+
+<div class="snap-center shrink-0 w-[85vw] md:w-[450px] bg-dark-card rounded-2xl p-6 border border-white/5 hover:border-pink-500/30 transition duration-300 group">
+    <div class="h-64 bg-black rounded-xl mb-6 overflow-hidden relative group/slider">
+        <div class="flex transition-transform duration-500 ease-in-out h-full slider-track w-full">
+            <img src="login1.png" alt="Auth 1" class="w-full h-full object-contain shrink-0">
+            <img src="login2.png" alt="Auth 2" class="w-full h-full object-contain shrink-0">
+            <img src="login3.png" alt="Auth 3" class="w-full h-full object-contain shrink-0">
+            <img src="login4.png" alt="Auth 4" class="w-full h-full object-contain shrink-0">
+        </div>
+        
+        <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 prev-btn">❮</button>
+        <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 next-btn">❯</button>
+        
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 dots-container z-10">
+            <div class="w-2 h-2 rounded-full bg-pink-500 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+            <div class="w-2 h-2 rounded-full bg-white/50 transition-colors"></div>
+        </div>
+    </div>
+
+    <div class="w-12 h-1 bg-pink-500/50 mb-6 rounded-full"></div>
+    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition">User Authentication Form App</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+        Is a mobile application designed to manage user authentication through a simple and intuitive interface. The application includes user registration, login, profile management, and logout features. Users can create a new account, sign in using their email and password, view their profile information, and update their profile picture. The interface is designed to provide a seamless, user-friendly, and efficient authentication experience while demonstrating fundamental mobile application development concepts.
+    </p>
+</div>
+
+<div class="snap-center shrink-0 w-[85vw] md:w-[450px] bg-dark-card rounded-2xl p-6 border border-white/5 hover:border-pink-500/30 transition duration-300 group">
+    <div class="h-64 bg-black rounded-xl mb-6 overflow-hidden relative group/slider">
+        <div class="flex transition-transform duration-500 ease-in-out h-full slider-track w-full">
+            <img src="fik1.png" alt="Library 1" class="w-full h-full object-contain shrink-0">
+            <img src="fik2.png" alt="Library 2" class="w-full h-full object-contain shrink-0">
+            <img src="fik3.png" alt="Library 3" class="w-full h-full object-contain shrink-0">
+            <img src="fik4.png" alt="Library 4" class="w-full h-full object-contain shrink-0">
+            <img src="fik5.png" alt="Library 5" class="w-full h-full object-contain shrink-0">
+            <img src="fik6.png" alt="Library 6" class="w-full h-full object-contain shrink-0">
+            <img src="fik7.png" alt="Library 7" class="w-full h-full object-contain shrink-0">
+            <img src="fik8.png" alt="Library 8" class="w-full h-full object-contain shrink-0">
+            <img src="fik9.png" alt="Library 9" class="w-full h-full object-contain shrink-0">
+            <img src="fik10.png" alt="Library 10" class="w-full h-full object-contain shrink-0">
+            <img src="fik11.png" alt="Library 11" class="w-full h-full object-contain shrink-0">
+            <img src="fik12.png" alt="Library 12" class="w-full h-full object-contain shrink-0">
+        </div>
+        <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 prev-btn">❮</button>
+        <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 next-btn">❯</button>
+    </div>
+
+    <div class="w-12 h-1 bg-pink-500/50 mb-6 rounded-full"></div>
+    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition">Digital Reference Library System – Faculty of Computer Science UPN Veteran Jakarta</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+        Is a web-based application developed for students of the Faculty of Computer Science at UPN Veteran Jakarta to manage and document academic references digitally. The system provides features for submitting reference data, including books, research papers, and community service journals, along with semester-based validation, PDF report generation, and student profile management. Designed with a structured and user-friendly interface, the application streamlines the process of collecting, organizing, and maintaining academic references in a more efficient and accessible way.
+    </p>
+</div>
+
+</div>
+
+    </section>
+
+    <section id="contact" class="pt-32 pb-16 bg-[#0f0f0f] border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-5xl md:text-7xl font-extrabold mb-16">My <span class="text-pink-500">Contact</span></h2>
+            <div class="mb-8">
+                <a href="mailto:chalietagabriella@gmail.com" class="inline-flex items-center gap-4 text-gray-300 hover:text-pink-400 transition text-xl md:text-2xl">
+                    <span class="text-3xl">📧</span>
+                    <span>chalietagabriella@gmail.com</span>
+                </a>
+            </div>
+            <div class="mb-16">
+                <a href="https://wa.me/6285811076136" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-4 text-gray-300 hover:text-pink-400 transition text-xl md:text-2xl">
+                    <span class="text-3xl">📱</span>
+                    <span>+62 858-1107-6136</span>
+                </a>
+            </div>
+            <div class="flex justify-center gap-12 mb-16">
+                <a href="https://www.linkedin.com/in/chalieta-gabriella-tangkau-36a444320/" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" class="w-14 h-14"></a>
+                <a href="https://www.instagram.com/abell.aaa/" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="w-14 h-14"></a>
+            </div>
+            <p class="text-gray-500 text-sm tracking-wider">Made with <span class="text-pink-500">♥</span> by Chalieta Gabriella Tangkau | 2026</p>
+        </div>
+    </section>
+
+    <script>
+        // 1. Script Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // 2. Script Image Slider Dalam Project Cards
+        document.querySelectorAll('.group\\/slider').forEach(slider => {
+            const track = slider.querySelector('.slider-track');
+            const prevBtn = slider.querySelector('.prev-btn');
+            const nextBtn = slider.querySelector('.next-btn');
+            const dots = slider.querySelectorAll('.dots-container div');
+            
+            // Hitung total gambar yang ada di dalam slider ini
+            const totalSlides = track.children.length;
+            let currentIndex = 0;
+
+            const updateSlider = () => {
+                // Geser gambar berdasarkan indeks
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update warna titik indikator
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.remove('bg-white/50');
+                        dot.classList.add('bg-pink-500');
+                    } else {
+                        dot.classList.remove('bg-pink-500');
+                        dot.classList.add('bg-white/50');
+                    }
+                });
+            };
+
+            // Tombol Kanan
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlider();
+            });
+
+            // Tombol Kiri
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+        });
+    </script>
+</body>
+</html>

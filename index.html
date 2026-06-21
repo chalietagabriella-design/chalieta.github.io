@@ -440,6 +440,21 @@
         <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-pink-500 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/slider:opacity-100 transition duration-300 z-10 next-btn">❯</button>
     </div>
 
+    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 dots-container z-10">
+    <div class="w-2 h-2 rounded-full bg-pink-500"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+    <div class="w-2 h-2 rounded-full bg-white/50"></div>
+</div>
+
     <div class="w-12 h-1 bg-pink-500/50 mb-6 rounded-full"></div>
     <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition">Digital Reference Library System – Faculty of Computer Science UPN Veteran Jakarta</h3>
     <p class="text-gray-400 text-sm leading-relaxed mb-4">
@@ -490,45 +505,62 @@
             });
         });
 
-        // 2. Script Image Slider Dalam Project Cards
-        document.querySelectorAll('.group\\/slider').forEach(slider => {
-            const track = slider.querySelector('.slider-track');
-            const prevBtn = slider.querySelector('.prev-btn');
-            const nextBtn = slider.querySelector('.next-btn');
-            const dots = slider.querySelectorAll('.dots-container div');
-            
-            // Hitung total gambar yang ada di dalam slider ini
-            const totalSlides = track.children.length;
-            let currentIndex = 0;
 
-            const updateSlider = () => {
-                // Geser gambar berdasarkan indeks
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                
-                // Update warna titik indikator
-                dots.forEach((dot, index) => {
-                    if (index === currentIndex) {
-                        dot.classList.remove('bg-white/50');
-                        dot.classList.add('bg-pink-500');
-                    } else {
-                        dot.classList.remove('bg-pink-500');
-                        dot.classList.add('bg-white/50');
-                    }
-                });
-            };
+document.querySelectorAll('.group\\/slider').forEach(slider => {
+    const track = slider.querySelector('.slider-track');
+    const prevBtn = slider.querySelector('.prev-btn');
+    const nextBtn = slider.querySelector('.next-btn');
+    const dots = slider.querySelectorAll('.dots-container div');
 
-            // Tombol Kanan
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateSlider();
+    if (!track || !prevBtn || !nextBtn) return;
+
+    let currentIndex = 0;
+    const totalSlides = track.children.length;
+
+    const updateSlider = () => {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        if (dots.length) {
+            dots.forEach((dot, index) => {
+                dot.classList.remove('bg-pink-500');
+                dot.classList.add('bg-white/50');
+
+                if (index === currentIndex) {
+                    dot.classList.remove('bg-white/50');
+                    dot.classList.add('bg-pink-500');
+                }
             });
+        }
+    };
 
-            // Tombol Kiri
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                updateSlider();
-            });
-        });
-    </script>
+    nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        currentIndex++;
+
+        if (currentIndex >= totalSlides) {
+            currentIndex = 0;
+        }
+
+        updateSlider();
+    });
+
+    prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = totalSlides - 1;
+        }
+
+        updateSlider();
+    });
+
+    updateSlider();
+});
+</script>
 </body>
 </html>
